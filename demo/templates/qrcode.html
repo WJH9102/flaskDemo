@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态生成二维码</title>
+</head>
+<body>
+<form action="http://127.0.0.1:8888/qrtools" method="post">
+    请输入内容:<input type="text" id="content" name="content"/><br/>
+    <input type="button" id="btn" value="生成二维码"/>
+</form>
+<hr/>
+<img src="" alt="">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+
+    $(function(){
+        $("#btn").click(function(){
+            var $content = $("#content").val();
+
+            // $("img").attr("src", "https://api.itmojun.com/qr?text=" + $content);
+            $("img").attr("src", "http://127.0.0.1:8880/qrtool?content=" + $content);
+
+            // $.ajax({
+            //     type:"post",
+            //     url:"http://127.0.0.1:8880/qrtools",
+            //     data:{"content":$content},
+            //     success:function(){
+            //         // $("img").css("display","block");
+            //         $("img").attr("src", "http://127.0.0.1:8880/static/1.jpg")
+            //     },
+            //     error:function(xhr){
+            //         console.log(xhr.status);
+            //     }
+            // });
+        });
+    })
+
+
+/*
+    $.ajax({
+        async : false,    //表示请求是否异步处理
+        type : "post",    //请求类型
+        url : "/getDepts",//请求的 URL地址
+        dataType : "json",//返回的数据类型
+        success: function (data) {
+          console.log(data);  //在控制台打印服务器端返回的数据
+          for(var i=0;i<data.length;i++){
+              console.log(data[i].deptId+" "+data[i].deptName);
+          }
+            $("select[name='depertmentId']").empty();
+            $("select[name='depertmentId']").append('<option value="">——请选择——</option>');
+            for(var i=0;i<data.length;i++){
+                var html ='<option value="'+data[i].deptId+'">';
+                html +=data[i].deptName + '</option>';
+                $("select[name='departmentId']").append(html);  //将数据显示在html页面
+            }
+        },
+        error:function (data) {
+            alert(data.result);
+        }
+    });
+*/
+
+</script>
+</body>
+</html>
