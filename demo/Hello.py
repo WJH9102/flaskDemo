@@ -19,10 +19,11 @@ def qrcode1():
 @app.route('/qrtool', methods=['GET', 'POST'])
 def qrcode_tool():
     file_list = os.listdir("./static")
-    for file in file_list:
-        path_file = os.path.join("./static", file)
-        if os.path.isfile(path_file):
-            os.remove(path_file)
+    if len(file_list) > 50:
+        for file in file_list:
+            path_file = os.path.join("./static", file)
+            if os.path.isfile(path_file):
+                os.remove(path_file)
     path = random.randint(0, 10000)
     content = request.args['content']
     img = qrcode.make(content)
